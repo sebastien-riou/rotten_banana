@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#stop the script at the first command which fails (return code not 0)
+set -e
+
+./build
+
+cat testvectors100K | ./check_against_test_vectors.py ./rotten_banana

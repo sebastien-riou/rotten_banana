@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#stop the script at the first command which fails (return code not 0)
+set -e
+
+echo "compile impl"
+gcc -c ../source/rotten_banana.c -O2 -o rotten_banana.o
+
+echo "build test binary"
+gcc -g main.c rotten_banana.o -o rotten_banana
+
+echo "clean up"
+rm rotten_banana.o
+
+echo "aes_entry"
+objdump --syms rotten_banana | grep AES_128_encrypt
